@@ -7,7 +7,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloServerPluginInlineTraceDisabled } from 'apollo-server-core';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
   imports: [
@@ -16,10 +16,10 @@ import { UserModule } from './user/user.module';
       autoSchemaFile: {
         federation: 2,
       },
-      path: 'graphql/users',
+      path: 'graphql/comments',
       plugins: [ApolloServerPluginInlineTraceDisabled()],
     }),
-    UserModule,
+    CommentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
