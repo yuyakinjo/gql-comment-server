@@ -3,15 +3,15 @@ import { Directive, Field, Int, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 @Directive('@key(fields: "id")')
 export class Comment {
-  @Field(() => Int)
+  @Field(() => Int, { nullable: true })
   id: number;
 
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   body: string;
 
-  @Field(() => Int)
+  @Field(() => Int, { nullable: true })
   postId: number;
 
-  @Field(() => Date)
+  @Field(() => Date, { nullable: true })
   date: Date;
 }
