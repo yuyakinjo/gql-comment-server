@@ -28,6 +28,10 @@ export class CommentService {
     return this.#comments;
   }
 
+  findByPostId(postId: number) {
+    return this.#comments.filter((comment) => comment.postId === postId);
+  }
+
   findOne(id: number) {
     return this.#comments.find((comment) => comment.id === id);
   }
