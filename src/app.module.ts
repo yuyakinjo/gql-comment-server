@@ -8,6 +8,8 @@ import { ApolloServerPluginInlineTraceDisabled } from 'apollo-server-core';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CommentModule } from './comment/comment.module';
+import { CommentResolver } from './comment/comment.resolver';
+import { CommentService } from './comment/comment.service';
 
 @Module({
   imports: [
@@ -22,6 +24,6 @@ import { CommentModule } from './comment/comment.module';
     CommentModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, CommentService, CommentResolver],
 })
 export class AppModule {}
