@@ -1,4 +1,4 @@
-import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Int, Mutation, Query, Resolver, ResolveReference } from '@nestjs/graphql'; // prettier-ignore
 import { CommentService } from './comment.service';
 import { CreateCommentInput } from './dto/create.input';
 import { UpdateCommentInput } from './dto/update.input';
@@ -31,5 +31,11 @@ export class CommentResolver {
   @Mutation(() => Comment)
   removeComment(@Args('id', { type: () => Int }) id: number) {
     return this.commentService.remove(id);
+  }
+
+  @ResolveReference()
+  resolveReference(reference: { __typename: string; id: number }): Comment[] {
+    console.log('🚀 ~ resolveReference ~ target', reference);
+    return this.commentService.findByPostId(reference.id);
   }
 }
