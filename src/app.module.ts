@@ -10,6 +10,9 @@ import { AppService } from './app.service';
 import { CommentModule } from './comment/comment.module';
 import { CommentResolver } from './comment/comment.resolver';
 import { CommentService } from './comment/comment.service';
+import { Post } from './post/entities/post.entity';
+import { PostModule } from './post/post.module';
+import { PostResolver } from './post/post.resolver';
 
 @Module({
   imports: [
@@ -20,10 +23,14 @@ import { CommentService } from './comment/comment.service';
       },
       path: 'graphql/comments',
       plugins: [ApolloServerPluginInlineTraceDisabled()],
+      buildSchemaOptions: {
+        orphanedTypes: [Post],
+      },
     }),
     CommentModule,
+    PostModule,
   ],
   controllers: [AppController],
-  providers: [AppService, CommentService, CommentResolver],
+  providers: [AppService, CommentService, CommentResolver, PostResolver],
 })
 export class AppModule {}
