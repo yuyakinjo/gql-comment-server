@@ -37,18 +37,17 @@ export class CommentService {
   }
 
   update(id: number, inputs: UpdateCommentInput) {
-    const [target] = this.#comments
-      .filter((comment) => comment.id === id)
-      .map((comment) => ({ ...comment, ...inputs }));
+    const target = this.findOne(id);
+    const updated = { ...target, ...inputs };
     this.#comments = this.#comments
       .filter((comment) => comment.id !== id)
-      .concat(target);
-    return target;
+      .concat(updated);
+    return updated;
   }
 
   remove(id: number) {
-    const target = this.#comments.find((comment) => comment.id === id);
+    const removed = this.findOne(id);
     this.#comments = this.#comments.filter((comment) => comment.id !== id);
-    return target;
+    return removed;
   }
 }
