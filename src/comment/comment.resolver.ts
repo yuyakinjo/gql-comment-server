@@ -32,10 +32,4 @@ export class CommentResolver {
   removeComment(@Args('id', { type: () => Int }) id: number) {
     return this.commentService.remove(id);
   }
-
-  @ResolveReference()
-  resolveReference(reference: { __typename: string; id: number }): Comment[] {
-    console.log('🚀 ~ resolveReference ~ target', reference);
-    return this.commentService.findByPostId(reference.id);
-  }
 }
