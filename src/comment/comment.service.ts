@@ -47,7 +47,7 @@ export class CommentService {
   }
 
   remove(id: number) {
-    const target = this.#comments.filter((comment) => comment.id === id);
+    const target = this.#comments.find((comment) => comment.id === id);
     this.#comments = this.#comments.filter((comment) => comment.id !== id);
     return target;
   }
