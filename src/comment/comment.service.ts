@@ -16,10 +16,10 @@ const comments = [
 export class CommentService {
   #comments = comments;
 
-  create({ ...props }: CreateCommentInput) {
+  create(input: CreateCommentInput) {
     const ids = this.#comments.map(({ id }) => id);
     const incremantalId = Math.max(...ids) + 1;
-    const comment = { id: incremantalId, date: new Date(), ...props };
+    const comment = { id: incremantalId, date: new Date(), ...input };
     this.#comments.push(comment);
     return comment;
   }
@@ -36,10 +36,10 @@ export class CommentService {
     return this.#comments.find((comment) => comment.id === id);
   }
 
-  update(id: number, updateUserInput: UpdateCommentInput) {
+  update(id: number, inputs: UpdateCommentInput) {
     const [target] = this.#comments
       .filter((comment) => comment.id === id)
-      .map((comment) => ({ ...comment, ...updateUserInput }));
+      .map((comment) => ({ ...comment, ...inputs }));
     this.#comments = this.#comments
       .filter((comment) => comment.id !== id)
       .concat(target);
