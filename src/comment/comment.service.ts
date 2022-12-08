@@ -3,13 +3,13 @@ import { CreateCommentInput } from './dto/create.input';
 import { UpdateCommentInput } from './dto/update.input';
 
 const comments = [
-  { id: 1, postId: 2, body: '121', date: new Date() },
-  { id: 2, postId: 2, body: '222', date: new Date() },
-  { id: 3, postId: 2, body: '323', date: new Date() },
-  { id: 4, postId: 1, body: '414', date: new Date() },
-  { id: 5, postId: 1, body: '515', date: new Date() },
-  { id: 6, postId: 1, body: '616', date: new Date() },
-  { id: 7, postId: 3, body: '737', date: new Date() },
+  { id: 1, body: '121', postId: 2, userId: 1, date: new Date() },
+  { id: 2, body: '222', postId: 2, userId: 1, date: new Date() },
+  { id: 3, body: '323', postId: 2, userId: 1, date: new Date() },
+  { id: 4, body: '414', postId: 1, userId: 1, date: new Date() },
+  { id: 5, body: '515', postId: 1, userId: 2, date: new Date() },
+  { id: 6, body: '616', postId: 1, userId: 2, date: new Date() },
+  { id: 7, body: '737', postId: 3, userId: 3, date: new Date() },
 ];
 
 @Injectable()

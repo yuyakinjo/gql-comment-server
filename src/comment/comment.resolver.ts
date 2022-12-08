@@ -1,4 +1,5 @@
-import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql'; // prettier-ignore
+import { Args, Int, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'; // prettier-ignore
+import { User } from 'src/user/entities/user.entity';
 import { CommentService } from './comment.service';
 import { CreateCommentInput } from './dto/create.input';
 import { UpdateCommentInput } from './dto/update.input';
@@ -31,5 +32,10 @@ export class CommentResolver {
   @Mutation(() => Comment, { nullable: true })
   removeComment(@Args('id', { type: () => Int }) id: number) {
     return this.commentService.remove(id);
+  }
+
+  @ResolveField(() => User)
+  user(@Parent() comment: Comment) {
+    return { __typename: 'User', id: comment.userId };
   }
 }
